@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DILG Luna - 2026 Barangay Performance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-2 md:mb-0">
+                <div class="bg-white p-2 rounded-full text-blue-900 font-bold text-xl shadow">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">DILG - MUNICIPAL FIELD OFFICE OF LUNA</h1>
+                    <p class="text-xs text-blue-200">Apayao, Cordillera Administrative Region | 2026 Barangay Performance Dashboard</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-800 text-blue-100 text-xs px-3 py-1.5 rounded-full font-medium border border-blue-700">
+                    <i class="fa-solid fa-circle text-emerald-400 text-[10px] mr-1.5"></i> Live Sync Active
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+        <!-- Welcome / Context Banner -->
+        <div class="bg-gradient-to-r from-blue-800 to-indigo-900 rounded-2xl p-6 text-white shadow-xl flex flex-col md:flex-row justify-between items-center">
+            <div class="space-y-2 mb-4 md:mb-0">
+                <h2 class="text-2xl font-extrabold tracking-tight">Barangay Governance & Statutory Compliance Portal</h2>
+                <p class="text-blue-100 text-sm max-w-2xl">
+                    Real-time performance tracking across all 22 barangays of Luna, Apayao. Automatically synced with Google Sheets.
+                </p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-xl border border-white/20 text-center">
+                <span id="overallMunicipalRate" class="block text-3xl font-black text-emerald-400">68.2%</span>
+                <span class="text-xs uppercase tracking-wider text-blue-200 font-semibold">Municipal Compliance Rate</span>
+            </div>
+        </div>
+
+        <!-- Master Barangay Scorecard Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-200 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Master Barangay Compliance Scorecard</h3>
+                    <p class="text-xs text-slate-500">Comprehensive live breakdown across all 22 barangays of Luna</p>
+                </div>
+                <!-- Search and Filter Controls -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-search text-xs"></i>
+                        </span>
+                        <input type="text" id="barangaySearch" placeholder="Search barangay..." onkeyup="filterTable()" 
+                            class="pl-9 pr-4 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-48 sm:w-56">
+                    </div>
+                    <div>
+                        <select id="statusFilter" onchange="filterTable()" 
+                            class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
+                            <option value="">All Status Tiers</option>
+                            <option value="GREEN">Green (≥ 70%)</option>
+                            <option value="YELLOW">Yellow (50% – 69.9%)</option>
+                            <option value="RED">Red (&lt; 50%)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table id="scorecardTable" class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200 whitespace-nowrap">
+                            <th class="p-3">#</th>
+                            <th class="p-3">Barangay</th>
+                            <th class="p-3 text-center">Road Clearing</th>
+                            <th class="p-3 text-center">BFDP</th>
+                            <th class="p-3 text-center">Kasambahay</th>
+                            <th class="p-3 text-center">VAWC</th>
+                            <th class="p-3 text-center">KP Mon.</th>
+                            <th class="p-3 text-center">Semestral</th>
+                            <th class="p-3 text-center">Annual</th>
+                            <th class="p-3 text-center">FTJAA</th>
+                            <th class="p-3 text-center bg-blue-50 text-blue-900 font-bold">Overall</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-100 whitespace-nowrap">
+                        <tr><td colspan="11" class="p-6 text-center text-slate-400">Loading live data from Google Sheets...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-6 mt-12 text-center text-xs">
+        <p>Department of the Interior and Local Government - Luna Municipal Field Office, Apayao</p>
+        <p class="text-slate-400 mt-1">2026 Barangay Performance Dashboard • Live CSV Integration</p>
+    </footer>
+
+    <!-- Live Data Sync Logic -->
+    <script>
+        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTuB94m7ebgiB2Ws-Cd_qKwDfCG-vycEbtIccFWbg_FWPrvbGWl02a69HUjtxAp4rt-DsjMVM-faS7m/pub?gid=999111&single=true&output=csv";
+
+        Papa.parse(csvUrl, {
+            download: true,
+            header: false,
+            complete: function(results) {
+                const rows = results.data;
+                processSheetData(rows);
+            },
+            error: function(err) {
+                console.error("Error fetching CSV:", err);
+                document.getElementById("tableBody").innerHTML = `<tr><td colspan="11" class="p-6 text-center text-red-500">Failed to load live Google Sheets data.</td></tr>`;
+            }
+        });
+
+        function processSheetData(rows) {
+            const tbody = document.getElementById("tableBody");
+            tbody.innerHTML = "";
+
+            let validRows = rows.slice(15, 37); // Adjust if your barangay rows start elsewhere
+
+            validRows.forEach((row, index) => {
+                if (!row[1]) return;
+                
+                let bName = row[1];
+                let scores = [];
+                // Adjusted column range for remaining modules (indices 2 to 9)
+                for(let i=2; i<=9; i++) {
+                    scores.push(row[i] || "0.0%");
+                }
+                let overall = row[10] || "0.0%"; // Adjust overall score column index if shifted
+
+                let tr = document.createElement("tr");
+                tr.className = "hover:bg-slate-50";
+                
+                let html = `<td class="p-3 text-slate-500">${index + 1}</td>
+                            <td class="p-3 font-semibold text-slate-900">${bName}</td>`;
+                
+                scores.forEach(score => {
+                    html += `<td class="p-3 text-center text-slate-600 font-medium">${score}</td>`;
+                });
+                
+                let overallVal = parseFloat(overall);
+                let badgeClass = overallVal >= 70 ? "bg-emerald-50 text-emerald-700" : (overallVal >= 50 ? "bg-amber-50 text-amber-700" : "bg-red-50 text-red-700");
+                
+                html += `<td class="p-3 text-center ${badgeClass} font-bold">${overall}</td>`;
+                tr.innerHTML = html;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterTable() {
+            const input = document.getElementById('barangaySearch').value.toUpperCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const tr = document.getElementById('tableBody').getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                const tdName = tr[i].getElementsByTagName('td')[1];
+                const tdOverall = tr[i].getElementsByTagName('td')[10]; // Adjusted overall column index
+                if (tdName && tdOverall) {
+                    const txtValue = tdName.textContent || tdName.innerText;
+                    const overallVal = parseFloat(tdOverall.textContent || tdOverall.innerText);
+
+                    let matchesSearch = txtValue.toUpperCase().indexOf(input) > -1;
+                    let matchesStatus = true;
+
+                    if (statusFilter === 'GREEN') matchesStatus = overallVal >= 70;
+                    else if (statusFilter === 'YELLOW') matchesStatus = overallVal >= 50 && overallVal < 70;
+                    else if (statusFilter === 'RED') matchesStatus = overallVal < 50;
+
+                    tr[i].style.display = (matchesSearch && matchesStatus) ? "" : "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
