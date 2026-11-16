@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DILG Luna - 2026 Barangay Performance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-2 md:mb-0">
+                <div class="bg-white p-2 rounded-full text-blue-900 font-bold text-xl shadow">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">DILG - MUNICIPAL FIELD OFFICE OF LUNA</h1>
+                    <p class="text-xs text-blue-200">Apayao, Cordillera Administrative Region | 2026 Barangay Performance Dashboard</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-800 text-blue-100 text-xs px-3 py-1.5 rounded-full font-medium border border-blue-700">
+                    <i class="fa-solid fa-circle text-emerald-400 text-[10px] mr-1.5"></i> Live Monitoring Active
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+        <!-- Welcome / Context Banner -->
+        <div class="bg-gradient-to-r from-blue-800 to-indigo-900 rounded-2xl p-6 text-white shadow-xl flex flex-col md:flex-row justify-between items-center">
+            <div class="space-y-2 mb-4 md:mb-0">
+                <h2 class="text-2xl font-extrabold tracking-tight">Barangay Governance & Statutory Compliance Portal</h2>
+                <p class="text-blue-100 text-sm max-w-2xl">
+                    Real-time performance tracking across all 22 barangays of Luna, Apayao for 11 statutory reporting modules including Road Clearing, BFDP, VAWC, Kasambahay, Katarungang Pambarangay, and EOs.
+                </p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-xl border border-white/20 text-center">
+                <span class="block text-3xl font-black text-emerald-400">68.2%</span>
+                <span class="text-xs uppercase tracking-wider text-blue-200 font-semibold">Municipal Compliance Rate</span>
+            </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-4">
+                <div class="p-4 bg-blue-50 text-blue-600 rounded-xl text-2xl">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Barangays</p>
+                    <h3 class="text-2xl font-bold text-slate-900">22</h3>
+                    <p class="text-xs text-emerald-600 font-medium mt-0.5"><i class="fa-solid fa-check mr-1"></i> 100% active coverage</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-4">
+                <div class="p-4 bg-indigo-50 text-indigo-600 rounded-xl text-2xl">
+                    <i class="fa-solid fa-folder-tree"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Statutory Modules</p>
+                    <h3 class="text-2xl font-bold text-slate-900">11</h3>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">Monthly, quarterly & annual</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-4">
+                <div class="p-4 bg-emerald-50 text-emerald-600 rounded-xl text-2xl">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">High Compliance (≥70%)</p>
+                    <h3 class="text-2xl font-bold text-slate-900">12 Barangays</h3>
+                    <p class="text-xs text-emerald-600 font-medium mt-0.5">Meeting target benchmark</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center space-x-4">
+                <div class="p-4 bg-amber-50 text-amber-600 rounded-xl text-2xl">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Action Required</p>
+                    <h3 class="text-2xl font-bold text-slate-900">10 Barangays</h3>
+                    <p class="text-xs text-amber-600 font-medium mt-0.5">Below 70% threshold</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Statutory Module Compliance Overview</h3>
+                    <p class="text-xs text-slate-500 mb-6">Municipal average compliance percentage across all reporting categories</p>
+                </div>
+                <div class="relative h-72">
+                    <canvas id="modulesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Top Performing Barangays</h3>
+                    <p class="text-xs text-slate-500 mb-6">Barangays with highest overall compliance rates</p>
+                </div>
+                <div class="relative h-72">
+                    <canvas id="barangaysChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statutory Report Modules Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Statutory Report Modules Summary</h3>
+                    <p class="text-xs text-slate-500">Status and compliance rates per reporting program</p>
+                </div>
+                <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-lg font-medium">11 Modules Tracked</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
+                            <th class="p-4 font-semibold">#</th>
+                            <th class="p-4 font-semibold">Statutory Report Module</th>
+                            <th class="p-4 font-semibold">Periodicity</th>
+                            <th class="p-4 font-semibold">Active Submissions</th>
+                            <th class="p-4 font-semibold">Compliance Rate</th>
+                            <th class="p-4 font-semibold">Status Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">1</td>
+                            <td class="p-4 font-semibold text-slate-900">Barangay Road Clearing Report (Annex A)</td>
+                            <td class="p-4 text-slate-600">Monthly (12x)</td>
+                            <td class="p-4 text-slate-600">11 Months Tracked</td>
+                            <td class="p-4 font-bold text-emerald-600">99.6%</td>
+                            <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">Excellent</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">2</td>
+                            <td class="p-4 font-semibold text-slate-900">Barangay Full Disclosure Policy (BFDP)</td>
+                            <td class="p-4 text-slate-600">Quarterly (4x)</td>
+                            <td class="p-4 text-slate-600">3 Quarters Tracked</td>
+                            <td class="p-4 font-bold text-emerald-600">97.0%</td>
+                            <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">Excellent</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">3</td>
+                            <td class="p-4 font-semibold text-slate-900">Kasambahay Monitoring Report</td>
+                            <td class="p-4 text-slate-600">Monthly (12x)</td>
+                            <td class="p-4 text-slate-600">10 Months Tracked</td>
+                            <td class="p-4 font-bold text-emerald-600">95.9%</td>
+                            <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">Excellent</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">4</td>
+                            <td class="p-4 font-semibold text-slate-900">VAW Desk Accomplishment Report (VAWC)</td>
+                            <td class="p-4 text-slate-600">Quarterly (4x)</td>
+                            <td class="p-4 text-slate-600">3 Quarters Tracked</td>
+                            <td class="p-4 font-bold text-emerald-600">92.4%</td>
+                            <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">Excellent</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">5</td>
+                            <td class="p-4 font-semibold text-slate-900">Katarungang Pambarangay (KP) Monitoring</td>
+                            <td class="p-4 text-slate-600">Quarterly & Monthly</td>
+                            <td class="p-4 text-slate-600">4 Periods Tracked</td>
+                            <td class="p-4 font-bold text-blue-600">86.4%</td>
+                            <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">Satisfactory</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">6</td>
+                            <td class="p-4 font-semibold text-slate-900">Semestral Report</td>
+                            <td class="p-4 text-slate-600">Semestral (2x)</td>
+                            <td class="p-4 text-slate-600">2 Periods Tracked</td>
+                            <td class="p-4 font-bold text-blue-600">80.7%</td>
+                            <td class="p-4"><span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-1 rounded-full font-semibold">Satisfactory</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">7</td>
+                            <td class="p-4 font-semibold text-slate-900">Annual Reports</td>
+                            <td class="p-4 text-slate-600">Annual (1x)</td>
+                            <td class="p-4 text-slate-600">1 Period Tracked</td>
+                            <td class="p-4 font-bold text-emerald-600">90.9%</td>
+                            <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">Excellent</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">8</td>
+                            <td class="p-4 font-semibold text-slate-900">BADAC Related EOs</td>
+                            <td class="p-4 text-slate-600">As Issued</td>
+                            <td class="p-4 text-slate-600">Pending Update</td>
+                            <td class="p-4 font-bold text-slate-400">0.0%</td>
+                            <td class="p-4"><span class="bg-slate-100 text-slate-600 text-xs px-2.5 py-1 rounded-full font-semibold">Pending Submissions</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">9</td>
+                            <td class="p-4 font-semibold text-slate-900">First Time Jobseekers Assistance Act (FTJAA)</td>
+                            <td class="p-4 text-slate-600">Monthly / Quarterly</td>
+                            <td class="p-4 text-slate-600">Active Tracking</td>
+                            <td class="p-4 font-bold text-emerald-600">94.1%</td>
+                            <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-semibold">Excellent</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">10</td>
+                            <td class="p-4 font-semibold text-slate-900">Other Executive Orders</td>
+                            <td class="p-4 text-slate-600">As Issued</td>
+                            <td class="p-4 text-slate-600">Pending Update</td>
+                            <td class="p-4 font-bold text-slate-400">0.0%</td>
+                            <td class="p-4"><span class="bg-slate-100 text-slate-600 text-xs px-2.5 py-1 rounded-full font-semibold">Pending Submissions</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="p-4 font-medium text-slate-500">11</td>
+                            <td class="p-4 font-semibold text-slate-900">Barangay-Based Institutions (BBIs)</td>
+                            <td class="p-4 text-slate-600">Annual / Periodic</td>
+                            <td class="p-4 text-slate-600">Pending Update</td>
+                            <td class="p-4 font-bold text-slate-400">0.0%</td>
+                            <td class="p-4"><span class="bg-slate-100 text-slate-600 text-xs px-2.5 py-1 rounded-full font-semibold">Pending Submissions</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Master Barangay Scorecard Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-200 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Master Barangay Compliance Scorecard</h3>
+                    <p class="text-xs text-slate-500">Comprehensive breakdown across all 22 barangays of Luna</p>
+                </div>
+                <!-- Search and Filter Controls -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-search text-xs"></i>
+                        </span>
+                        <input type="text" id="barangaySearch" placeholder="Search barangay..." onkeyup="filterTable()" 
+                            class="pl-9 pr-4 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-48 sm:w-56">
+                    </div>
+                    <div>
+                        <select id="statusFilter" onchange="filterTable()" 
+                            class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
+                            <option value="">All Status Tiers</option>
+                            <option value="GREEN">Green (≥ 70%)</option>
+                            <option value="YELLOW">Yellow (50% – 69.9%)</option>
+                            <option value="RED">Red (&lt; 50%)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-1.5 text-xs">
+                        <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded font-semibold">≥70%</span>
+                        <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded font-semibold">50–69.9%</span>
+                        <span class="px-2 py-1 bg-red-50 text-red-700 rounded font-semibold">&lt;50%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200 whitespace-nowrap">
+                            <th class="p-3">#</th>
+                            <th class="p-3">Barangay</th>
+                            <th class="p-3 text-center">Road Clearing</th>
+                            <th class="p-3 text-center">BFDP</th>
+                            <th class="p-3 text-center">Kasambahay</th>
+                            <th class="p-3 text-center">VAWC</th>
+                            <th class="p-3 text-center">KP Mon.</th>
+                            <th class="p-3 text-center">Semestral</th>
+                            <th class="p-3 text-center">Annual</th>
+                            <th class="p-3 text-center">BADAC</th>
+                            <th class="p-3 text-center">FTJAA</th>
+                            <th class="p-3 text-center">Other EOs</th>
+                            <th class="p-3 text-center">BBIs</th>
+                            <th class="p-3 text-center bg-blue-50 text-blue-900 font-bold">Overall</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 whitespace-nowrap">
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">1</td>
+                            <td class="p-3 font-semibold text-slate-900">BACSAY</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">72.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">2</td>
+                            <td class="p-3 font-semibold text-slate-900">CAGANDUNGAN</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">72.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">3</td>
+                            <td class="p-3 font-semibold text-slate-900">CALABIGAN</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">70.5%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">4</td>
+                            <td class="p-3 font-semibold text-slate-900">CAPAGAYPAYAN</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-red-500 font-medium">0.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-red-500 font-medium">25.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">80.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-red-50 font-bold text-red-700">46.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">5</td>
+                            <td class="p-3 font-semibold text-slate-900">DAGUPAN</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">69.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">6</td>
+                            <td class="p-3 font-semibold text-slate-900">LAPPA</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">69.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">7</td>
+                            <td class="p-3 font-semibold text-slate-900">LUYON</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">90.9%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">80.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-red-500 font-medium">50.0%</td>
+                            <td class="p-3 text-center text-red-500 font-medium">50.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">80.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-red-50 font-bold text-red-700">53.9%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">8</td>
+                            <td class="p-3 font-semibold text-slate-900">MARAG</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">68.2%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">9</td>
+                            <td class="p-3 font-semibold text-slate-900">POBLACION</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">90.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">71.8%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">10</td>
+                            <td class="p-3 font-semibold text-slate-900">QUIRINO</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">72.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">11</td>
+                            <td class="p-3 font-semibold text-slate-900">SALVACION</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">80.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-red-500 font-medium">50.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">90.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">65.5%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">12</td>
+                            <td class="p-3 font-semibold text-slate-900">SAN FRANCISCO</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">72.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">13</td>
+                            <td class="p-3 font-semibold text-slate-900">SAN GREGORIO</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">125.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">90.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">68.8%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">14</td>
+                            <td class="p-3 font-semibold text-slate-900">SAN JOSE (CANGISITAN)</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">90.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">71.8%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">15</td>
+                            <td class="p-3 font-semibold text-slate-900">SAN ISIDRO NORTE</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">72.7%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">16</td>
+                            <td class="p-3 font-semibold text-slate-900">SAN ISIDRO SUR</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">66.7%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">62.9%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">17</td>
+                            <td class="p-3 font-semibold text-slate-900">SAN SEBASTIAN</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">70.5%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">18</td>
+                            <td class="p-3 font-semibold text-slate-900">STA. LINA</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">125.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">75.0%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">19</td>
+                            <td class="p-3 font-semibold text-slate-900">SHALOM</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-amber-600 font-medium">70.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-red-500 font-medium">50.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">80.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">61.4%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">20</td>
+                            <td class="p-3 font-semibold text-slate-900">TUMOG</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">70.5%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">21</td>
+                            <td class="p-3 font-semibold text-slate-900">TUROD</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-blue-600 font-medium">75.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-amber-50 font-bold text-amber-700">68.2%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-3 text-slate-500">22</td>
+                            <td class="p-3 font-semibold text-slate-900">ZUMIGUI</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-emerald-600 font-medium">100.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center text-slate-400">0.0%</td>
+                            <td class="p-3 text-center bg-emerald-50 font-bold text-emerald-700">72.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-6 mt-12 text-center text-xs">
+        <p>Department of the Interior and Local Government - Luna Municipal Field Office, Apayao</p>
+        <p class="text-slate-400 mt-1">2026 Barangay Performance Dashboard • Powered by DILG-CAR Information Systems</p>
+    </footer>
+
+    <!-- Chart Scripts -->
+    <script>
+        // Modules Chart
+        const ctxModules = document.getElementById('modulesChart').getContext('2d');
+        new Chart(ctxModules, {
+            type: 'bar',
+            data: {
+                labels: ['Road Clearing', 'BFDP', 'Kasambahay', 'VAWC', 'KP Mon.', 'Semestral', 'Annual', 'FTJAA'],
+                datasets: [{
+                    label: 'Compliance Rate (%)',
+                    data: [99.6, 97.0, 95.9, 92.4, 86.4, 80.7, 90.9, 94.1],
+                    backgroundColor: '#3b82f6',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { callback: function(value) { return value + '%'; } }
+                    }
+                }
+            }
+        });
+
+        // Barangays Chart (Top 10)
+        const ctxBarangays = document.getElementById('barangaysChart').getContext('2d');
+        new Chart(ctxBarangays, {
+            type: 'bar',
+            data: {
+                labels: ['Sta. Lina', 'Bacsay', 'Cagandungan', 'Quirino', 'San Francisco', 'San Isidro Norte', 'Zumigui', 'Calabigan', 'Tumog', 'San Sebastian'],
+                datasets: [{
+                    label: 'Overall Compliance (%)',
+                    data: [75.0, 72.7, 72.7, 72.7, 72.7, 72.7, 72.7, 70.5, 70.5, 70.5],
+                    backgroundColor: '#10b981',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { callback: function(value) { return value + '%'; } }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <!-- Filter Script -->
+    <script>
+        function filterTable() {
+            const input = document.getElementById('barangaySearch');
+            const filter = input.value.toUpperCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const table = document.getElementById('scorecardTable') || document.querySelector('table.text-sm');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const tr = tbody.getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                const tdName = tr[i].getElementsByTagName('td')[1]; // Barangay name column
+                const tdOverall = tr[i].getElementsByTagName('td')[13]; // Overall percentage column
+                
+                if (tdName && tdOverall) {
+                    const txtValue = tdName.textContent || tdName.innerText;
+                    const overallText = tdOverall.textContent || tdOverall.innerText;
+                    const overallVal = parseFloat(overallText);
+
+                    let matchesSearch = txtValue.toUpperCase().indexOf(filter) > -1;
+                    let matchesStatus = true;
+
+                    if (statusFilter === 'GREEN') {
+                        matchesStatus = overallVal >= 70;
+                    } else if (statusFilter === 'YELLOW') {
+                        matchesStatus = overallVal >= 50 && overallVal < 70;
+                    } else if (statusFilter === 'RED') {
+                        matchesStatus = overallVal < 50;
+                    }
+
+                    if (matchesSearch && matchesStatus) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
